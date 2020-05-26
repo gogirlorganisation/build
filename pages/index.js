@@ -1,15 +1,15 @@
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { useRouter } from "next/router";
-import { ToastProvider, useToasts } from "react-toast-notifications";
+import { useToasts } from "react-toast-notifications";
 import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
 
 import Head from "../components/Layout/Head";
-import theme from "../lib/theme";
 import firebase from "../lib/firebase";
 import { GoogleProvider, FacebookProvider, WithAuth } from "../lib/auth";
+import withContexts from "../lib/with-contexts";
 
 const Container = styled.div`
   height: 100%;
@@ -88,10 +88,4 @@ function Home() {
   );
 }
 
-export default () => (
-  <ThemeProvider theme={theme}>
-    <ToastProvider>
-      <Home />
-    </ToastProvider>
-  </ThemeProvider>
-);
+export default withContexts(Home);

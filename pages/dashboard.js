@@ -4,8 +4,9 @@ import { useToasts } from "react-toast-notifications";
 
 import { WithAuth } from "../lib/auth";
 import firebase from "../lib/firebase";
+import withContexts from "../lib/with-contexts";
 
-export default function Dashboard() {
+function Dashboard() {
   const router = useRouter();
   const { addToast } = useToasts();
 
@@ -24,3 +25,5 @@ export default function Dashboard() {
     </Layout>
   );
 }
+
+export default withContexts(Dashboard);
