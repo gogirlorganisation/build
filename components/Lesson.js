@@ -9,10 +9,9 @@ const Hero = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid #eaeaef;
-  background-color: rgba(255, 51, 85, 0.85);
-  color:white;
+  background-color: ${props => props.theme.pink};
+  color: white;
   padding-bottom: 10vh;
-
 `;
 
 const Title = styled.div`
@@ -20,7 +19,6 @@ const Title = styled.div`
   font-weight: bold;
   margin-bottom: 10px;
   padding-top: 5vh;
-
 
   @media (max-width: 550px) {
     font-size: 1.8rem;
@@ -44,40 +42,38 @@ const Cards = styled.div`
 `;
 
 const Card = styled.div`
-    margin: 10px 0;
-    width: 100%;
-    display: inline-block;
-    background:  #fff;
-    border: none;
-    padding: 40px;
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
-    transition: all 250ms ease;
-    &:hover {
-      transform: translateY(-5px);
-    }
-    
+  margin: 10px 0;
+  width: 100%;
+  display: inline-block;
+  background: #fff;
+  border: none;
+  padding: 40px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
+  transition: all 250ms ease;
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
-
 const CardHeader = styled.div`
-    text-align: left;
-    font-size: 2em;
-    color: black;
-    padding-bottom: 10px;
+  text-align: left;
+  font-size: 2em;
+  color: black;
+  padding-bottom: 10px;
 
-    @media(max-width: 600px) {
-      font-size: 1.2em;
-    }
+  @media (max-width: 600px) {
+    font-size: 1.2em;
+  }
 `;
 
 const CardSubHeader = styled.div`
-    text-align: left;
-    font-size: 1.4em;
-    color: #606060;
+  text-align: left;
+  font-size: 1.4em;
+  color: #606060;
 
-    @media(max-width: 600px) {
-      font-size: 1em;
-    }
+  @media (max-width: 600px) {
+    font-size: 1em;
+  }
 `;
 
 const Button = styled.button`
@@ -93,15 +89,14 @@ const Button = styled.button`
   outline: none;
   text-decoration: none;
   border-radius: 5px;
-  background-color:rgba(255, 51, 85, 0.85);
+  background-color: rgba(255, 51, 85, 0.85);
 
-
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 60px;
     padding: 5px;
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     width: 40px;
     padding: 5px;
     margin: 10px 2.5px 10px 0;
@@ -110,59 +105,38 @@ const Button = styled.button`
 `;
 
 export default function LessonsComponent() {
-    return (
-        <Hero>
-            <Title>Upcoming Lessons</Title>
-            <Cards>
-                <Card>
-                    <CardHeader>
-                        Lesson 3: Python Fundamentals
-                    </CardHeader>
-                    <CardSubHeader>
-                      1:00pm to 2:00pm IST
-                    </CardSubHeader>
-                    <CardSubHeader>
-                      14th May, 2020
-                    </CardSubHeader>
-                    <Button>Slides</Button>
-                    <Button>Quiz</Button>
-                </Card>
-            </Cards>
-            <Title>Past Lessons</Title>
-            <Cards>
+  return (
+    <Hero>
+      <Title>Upcoming Lessons</Title>
+      <Cards>
+        <Card>
+          <CardHeader>Lesson 3: Python Fundamentals</CardHeader>
+          <CardSubHeader>1:00pm to 2:00pm IST</CardSubHeader>
+          <CardSubHeader>14th May, 2020</CardSubHeader>
+          <Button>Slides</Button>
+          <Button>Quiz</Button>
+        </Card>
+      </Cards>
+      <Title>Past Lessons</Title>
+      <Cards>
+        <Card>
+          <CardHeader>Lesson 2: Python Fundamentals</CardHeader>
+          <CardSubHeader>1:00pm to 2:00pm IST</CardSubHeader>
+          <CardSubHeader>14th May, 2020</CardSubHeader>
+          <Button>Video</Button>
+          <Button>Slides</Button>
+          <Button>Quiz</Button>
+        </Card>
 
-                <Card>
-                    <CardHeader>
-                        Lesson 2: Python Fundamentals
-                    </CardHeader>
-                    <CardSubHeader>
-                      1:00pm to 2:00pm IST
-                    </CardSubHeader>
-                    <CardSubHeader>
-                      14th May, 2020
-                    </CardSubHeader>
-                    <Button>Video</Button>
-                    <Button>Slides</Button>
-                    <Button>Quiz</Button>
-                </Card>
-
-                <Card>
-                    <CardHeader>
-                        Lesson 1: Python Fundamentals
-                    </CardHeader>
-                    <CardSubHeader>
-                      1:00pm to 2:00pm IST
-                    </CardSubHeader>
-                    <CardSubHeader>
-                      14th May, 2020
-                    </CardSubHeader>
-                    <Button>Video</Button>
-                    <Button>Slides</Button>
-                    <Button>Quiz</Button>
-
-                </Card>
-            </Cards>
-
-        </Hero>
-    );
+        <Card>
+          <CardHeader>Lesson 1: Python Fundamentals</CardHeader>
+          <CardSubHeader>1:00pm to 2:00pm IST</CardSubHeader>
+          <CardSubHeader>14th May, 2020</CardSubHeader>
+          <Button>Video</Button>
+          <Button>Slides</Button>
+          <Button>Quiz</Button>
+        </Card>
+      </Cards>
+    </Hero>
+  );
 }

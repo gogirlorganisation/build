@@ -8,17 +8,15 @@ import Leaderboard from "../components/Leaderboard";
 import Badges from "../components/Badges";
 import Sponsors from "../components/Sponsors";
 
-
-
 function Dashboard() {
   return (
     <Layout title="Dashboard">
       <WithAuth authenticated={true}>
         <Hero />
-        <Lessons/>
-        <Leaderboard/>
-        <Badges/>
-        <Sponsors/>
+        <Lessons />
+        <Leaderboard />
+        <Badges />
+        <Sponsors />
       </WithAuth>
     </Layout>
   );
