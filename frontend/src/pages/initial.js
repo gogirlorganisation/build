@@ -65,28 +65,23 @@ const Button = styled.button`
   border-radius: 4px;
 `;
 
-function Home() {
+function Initial() {
   const history = useHistory();
   const { addToast } = useToasts();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
 
   const handleSubmit = async () => {
     setSubmitting(true);
 
     try {
-      const req = await axios.post("/api/auth/login", { email, password });
+      const req = await axios.post("/api/auth/initial", { name });
       console.log(req);
 
       if (!req.data.success) {
         addToast(req.data.message, { appearance: "error", timeout: 1500 });
       } else {
-        if (req.data.user.name) {
-          history.push("/dashboard");
-        } else {
-          history.push("/initial");
-        }
+        history.push("/dashboard");
       }
     } catch (e) {
       console.log(e);
@@ -98,25 +93,19 @@ function Home() {
 
   return (
     <>
-      <Head title="Login" />
+      <Head title="Welcome" />
       <Container>
         <Box>
-          <Heading>Login</Heading>
+          <Heading>Welcome to #Build2.0!</Heading>
           <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
           <ButtonContainer>
             <Button onClick={handleSubmit} disabled={submitting}>
-              Login
+              Submit
             </Button>
           </ButtonContainer>
         </Box>
@@ -125,4 +114,4 @@ function Home() {
   );
 }
 
-export default withAuth(Home, false, "/dashboard");
+export default withAuth(Initial, true, "/");

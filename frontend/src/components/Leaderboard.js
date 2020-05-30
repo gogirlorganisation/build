@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import yay from "../assets/yay.jpg";
+
 const Hero = styled.div`
   width: 100%;
-  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid #eaeaef;
+  padding: 50px 0;
 `;
 
 const Title = styled.div`
@@ -27,7 +29,7 @@ const Leaderboard = styled.div`
   width: 60%;
   border: none;
   background: #ffe3e7;
-  background-image: url(../assets/yay.jpg);
+  /* background-image: url(${yay}); */
   padding: 20px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
   transition: all 250ms ease;
@@ -51,12 +53,13 @@ const Leaderboard = styled.div`
 
 const Results = styled.div`
   margin: auto;
-  height: 60vh;
+  max-height: 60vh;
   width: 70%;
   border: none;
   background: #fff;
   padding: 20px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
+  overflow-y: auto;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -64,68 +67,46 @@ const Results = styled.div`
 `;
 
 export default function LeaderboardComponent() {
+  const [users, setUsers] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const req = await fetch("/api/u/leaderboard");
+        const data = await req.json();
+
+        if (data.success) {
+          setUsers(data.users);
+        } else {
+          console.error(data);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    fetchUsers();
+  }, []);
+
   return (
     <Hero>
       <Title>Leaderboard</Title>
       <Leaderboard>
         <Results>
           <table style={{ width: "100%", height: "100%" }}>
-            <tr>
-              <td>
-                <b>1</b>
-              </td>
-              <td>
-                <b>Jackson</b>
-              </td>
-              <td>
-                <b>100</b>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacksoaa nhsagf</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Jacksonss</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Jackssaon</td>
-              <td>100</td>
-            </tr>
-
-            <tr>
-              <td>6</td>
-              <td>Jacsjhkson</td>
-              <td>100</td>
-            </tr>
-
-            <tr>
-              <td>7</td>
-              <td>Jacsjhkson</td>
-              <td>100</td>
-            </tr>
-
-            <tr>
-              <td>8</td>
-              <td>Jacsjhkson</td>
-              <td>100</td>
-            </tr>
-
-            <tr>
-              <td>9</td>
-              <td>Jacsjhkson</td>
-              <td>100</td>
-            </tr>
-
-            <tr>
-              <td>10</td>
-              <td>Jacsjhkson</td>
-              <td>100</td>
-            </tr>
+            {users.map((u, i) => (
+              <tr key={i}>
+                <td>
+                  <b>{i + 1}</b>
+                </td>
+                <td>
+                  <b>{u.name}</b>
+                </td>
+                <td>
+                  <b>{u.points}</b>
+                </td>
+              </tr>
+            ))}
           </table>
         </Results>
       </Leaderboard>

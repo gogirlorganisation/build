@@ -17,6 +17,7 @@ const Title = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 20px;
+  color: white;
 
   @media screen and (max-width: 550px) {
     font-size: 1.8rem;
@@ -26,7 +27,8 @@ const Title = styled.div`
 const Cards = styled.div`
   max-width: 1200px;
   width: 80%;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   display: flex;
   text-align: center;
 
@@ -59,14 +61,52 @@ const Card = styled.div`
   }
 `;
 
+const NoBadges = styled.div`
+  margin: 30px auto;
+  font-size: 1.1rem;
+  color: #fff;
+`;
+
+const BadgeImg = styled.img`
+  height: 90%;
+  width: auto;
+`;
+
 export default function BadgesComponent() {
+  const [badges, setBadges] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchBadges() {
+      try {
+        const req = await fetch("/api/u/badges");
+        const data = await req.json();
+
+        if (data.success) {
+          setBadges(data.badges);
+        } else {
+          console.error(data);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    fetchBadges();
+  }, []);
+
   return (
     <Hero>
       <Title>My Badges</Title>
       <Cards>
-        <Card />
-        <Card />
-        <Card />
+        {badges.length === 0 ? (
+          <NoBadges>You do not have any badges.</NoBadges>
+        ) : (
+          badges.map(b => (
+            <Card>
+              <BadgeImg src={b.img} alt="Badge" />
+            </Card>
+          ))
+        )}
       </Cards>
     </Hero>
   );

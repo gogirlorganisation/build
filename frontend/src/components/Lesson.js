@@ -9,12 +9,12 @@ const Hero = styled.div`
   align-items: center;
   border-bottom: 2px solid #eaeaef;
   background-color: ${props => props.theme.pink};
-  color: white;
   padding-bottom: 10vh;
 `;
 
 const Title = styled.div`
   font-size: 2.5rem;
+  color: white;
   font-weight: bold;
   margin-bottom: 10px;
   padding-top: 5vh;

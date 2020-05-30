@@ -5,6 +5,7 @@ import Lessons from "../components/Lesson.js";
 import Leaderboard from "../components/Leaderboard";
 import Badges from "../components/Badges";
 import Sponsors from "../components/Sponsors";
+import withAuth from "../lib/with-auth";
 
 function Dashboard() {
   return (
@@ -18,4 +19,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default withAuth(Dashboard, true, "/");

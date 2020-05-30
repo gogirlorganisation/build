@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import AuthContext from "../lib/auth-context";
 
 const Hero = styled.div`
   width: 100%;
@@ -52,16 +53,14 @@ const Level = styled.div`
 `;
 
 export default function HeroComponent() {
-  const [name, setName] = React.useState("Name");
-  const [points, setPoints] = React.useState(100);
+  const {
+    user: { name, points },
+  } = React.useContext(AuthContext);
 
   return (
     <Hero>
       <Name>Hello, {name}</Name>
       <Points>You have {points} Points</Points>
-      <Container>
-        <Level></Level>
-      </Container>
     </Hero>
   );
 }
