@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url      = env("MYSQL_URL")
+  url = "***"
 }
 
 generator client {
@@ -34,7 +34,7 @@ model Lesson {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   title        String
-  past         Boolean      @default(false)
+  open         Boolean      @default(false)
   date         DateTime
   materials    String?
   hindiVideo   String?
