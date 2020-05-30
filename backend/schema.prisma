@@ -1,0 +1,67 @@
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  password  String
+  name      String?
+  points    Int      @default(0)
+  badges    Badge[]
+}
+
+model Badge {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  img       String
+}
+
+model Lesson {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  open      Boolean  @default(false)
+  start     DateTime
+  end       DateTime
+  materials String?
+  video     String?
+}
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lessonId  Int
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  present   Boolean  @default(true)
+}
+
+model Quiz {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  lessonId  Int
+  lesson    Lesson     @relation(fields: [lessonId], references: [id])
+  questions Question[]
+}
+
+model Question {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quizId    Int
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+
+}
