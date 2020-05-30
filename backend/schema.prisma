@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  password  String
-  name      String?
-  points    Int      @default(0)
-  badges    Badge[]
+  id         Int          @id @default(autoincrement())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  email      String       @unique
+  password   String
+  name       String?
+  points     Int          @default(0)
+  badges     Badge[]
+  attendance Attendance[]
 }
 
 model Badge {
@@ -23,18 +24,22 @@ model Badge {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   img       String
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
 }
 
 model Lesson {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  open      Boolean  @default(false)
-  start     DateTime
-  end       DateTime
-  materials String?
-  video     String?
+  id         Int          @id @default(autoincrement())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  title      String
+  open       Boolean      @default(false)
+  start      DateTime
+  end        DateTime
+  materials  String?
+  video      String?
+  attendance Attendance[]
+  quiz       Quiz[]
 }
 
 model Attendance {
@@ -54,14 +59,16 @@ model Quiz {
   updatedAt DateTime   @updatedAt
   lessonId  Int
   lesson    Lesson     @relation(fields: [lessonId], references: [id])
-  questions Question[]
+  form      String
+  max       Int
+  UserQuiz  UserQuiz[]
 }
 
-model Question {
+model UserQuiz {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   quizId    Int
   quiz      Quiz     @relation(fields: [quizId], references: [id])
-
+  score     Int
 }
