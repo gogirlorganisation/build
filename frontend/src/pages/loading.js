@@ -55,7 +55,7 @@ export default ({ error }) => {
     <LoadingContainer>
       <BounceLoader
         loading={error ? false : true}
-        size="300"
+        size="300px"
         color={theme.pink}
       />
 
