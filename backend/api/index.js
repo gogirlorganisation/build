@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/auth", require("./auth"));
+router.use("/u", require("./user"));
 
 router.get("*", (req, res, next) => {
   const e = new Error("Not found");
