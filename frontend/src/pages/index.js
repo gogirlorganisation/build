@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { useToasts } from "react-toast-notifications";
+import { useHistory } from "react-router-dom";
 import Head from "../components/Layout/Head";
 
 const Container = styled.div`
@@ -63,6 +65,7 @@ const Button = styled.button`
 `;
 
 function Home() {
+  const history = useHistory();
   const { addToast } = useToasts();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -72,14 +75,17 @@ function Home() {
     setSubmitting(true);
 
     try {
-      const req = await fetch("/api/auth/login", {
-        method: "post",
-        data: { email, password },
-      });
+      const req = await axios.post("/api/auth/login", { email, password });
+      console.log(req);
 
-      console.log(await req.json());
+      if (!req.data.success) {
+        addToast(req.data.message, { appearance: "error", timeout: 1500 });
+      } else {
+        history.push("/dashboard");
+      }
     } catch (e) {
-      console.error(e);
+      console.log(e);
+      addToast(e.message, { appearance: "error", timeout: 1500 });
     }
 
     setSubmitting(false);

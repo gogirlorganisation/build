@@ -53,9 +53,7 @@ app.use((err, req, res, next) => {
 
   res.locals.authenticated = req.isAuthenticated() || false;
   res.locals.user = req.user;
-  res
-    .status(err.statusCode)
-    .json({ success: false, code: err.statusCode, message: err.message });
+  res.json({ success: false, code: err.statusCode, message: err.message });
   return;
 });
 
