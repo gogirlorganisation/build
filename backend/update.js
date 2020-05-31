@@ -29,7 +29,7 @@ async function findOrCreateRecord(row, lessonId) {
       const score = parseInt(row._rawData[1].split("/")[0], 10);
 
       // Create new record
-      await client.userQuiz.create({
+      const uq_ = await client.userQuiz.create({
         data: {
           lesson: { connect: { id: lessonId } },
           user: { connect: { id: user.id } },
@@ -42,6 +42,12 @@ async function findOrCreateRecord(row, lessonId) {
         where: { id: user.id },
         data: { points: user.points + score },
       });
+
+      console.log(
+        `${Date.now()} UserQuiz record with id ${uq_.id} created for user ${
+          user.id
+        } for lesson ${lessonId} with score ${score}`
+      );
 
       return true;
     }

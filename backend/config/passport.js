@@ -22,7 +22,6 @@ passport.use(
 
         return done("Incorrect password");
       } else {
-        console.log("idx", emails.indexOf(email));
         if (emails.indexOf(email) === -1) {
           return done("This email is not associated to a build participant");
         }

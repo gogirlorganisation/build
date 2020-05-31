@@ -50,9 +50,7 @@ app.get("*", (req, res) =>
 );
 
 app.use((err, req, res, next) => {
-  if (process.env.NODE_ENV !== "production") {
-    console.log(err);
-  }
+  console.log(err);
 
   // Set statusCode to 500 if it isn't already there
   err.statusCode = err.statusCode || 500;
