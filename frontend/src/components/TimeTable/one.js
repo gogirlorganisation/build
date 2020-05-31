@@ -76,11 +76,7 @@ export default () => {
           <b>Review Session</b>
         </Lesson>
         <Lesson area="LE12">
-          <div>
-            <b>Lesson 1</b>
-            <br />
-            (English): Data Types, Input and Output
-          </div>
+          <b>Review Session</b>
         </Lesson>
         <Lesson area="LE10">
           <div>
@@ -90,7 +86,11 @@ export default () => {
           </div>
         </Lesson>
         <Lesson area="LE11">
-          <b>Review Session</b>
+          <div>
+            <b>Lesson 1</b>
+            <br />
+            (English): Data Types, Input and Output
+          </div>
         </Lesson>
         <Lesson area="LE13">
           <div>
