@@ -15,7 +15,6 @@ router.get("/s", async (req, res, next) => {
       orderBy: {
         date: "asc",
       },
-      first: 1,
     });
 
     const attendance = await client.attendance.findMany({
@@ -47,7 +46,12 @@ router.get("/s", async (req, res, next) => {
       };
     });
 
-    res.json({ success: true, message: "Lessons retreived", upcoming, past });
+    res.json({
+      success: true,
+      message: "Lessons retreived",
+      upcoming: upcoming[0] ? [upcoming[0]] : [],
+      past,
+    });
   } catch (e) {
     e.statusCode = 500;
     next(e);
