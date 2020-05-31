@@ -27,7 +27,7 @@ client_secret.json
 
 # production
 build
-react-build
+react_build
 
 # misc
 .DS_Store

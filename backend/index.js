@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const logger = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
@@ -39,7 +40,14 @@ require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve react build
+app.use(express.static(path.join(__dirname, "react_build")));
+
 app.use("/api", api);
+
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname + "/react_build/index.html"))
+);
 
 app.use((err, req, res, next) => {
   if (process.env.NODE_ENV !== "production") {
