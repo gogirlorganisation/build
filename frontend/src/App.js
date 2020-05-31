@@ -7,6 +7,7 @@ import theme from "./lib/theme";
 import Login from "./pages/index";
 import Dashboard from "./pages/dashboard";
 import Initial from "./pages/initial";
+import TimeTable from "./pages/time-table";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
@@ -23,6 +24,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route exact path="/initial" component={Initial} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/timetable" component={TimeTable} />
             </Switch>
           </Router>
         </AuthContext.Provider>
