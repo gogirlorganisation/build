@@ -40,23 +40,48 @@ export default () => {
         <T area="TV6">10:00PM IST</T>
         <T area="TV7">11:00PM IST</T>
         <T area="TV8">12:00PM IST</T>
-        <Lesson area="LE1">Introduction</Lesson>
-        <Lesson area="LE2">Review Session</Lesson>
+        <Lesson area="LE1">
+          <b>Introduction</b>
+        </Lesson>
+        <Lesson area="LE2">
+          <b>Review Session</b>
+        </Lesson>
         <Lesson area="LE3">
-          Lesson 1 (English): Basic Operations, Variables, and Data Types, Input
-          and Print, Strings
+          <div>
+            <b>Lesson 1</b>
+            <br />
+            (English): Data Types, Input and Output
+          </div>
         </Lesson>
-        <Lesson area="LE4">Review Session</Lesson>
-        <Lesson area="LE5">Lesson 2 (English)</Lesson>
-        <Lesson area="LE6">Review Session</Lesson>
-        <Lesson area="LE7">Lesson 3 (English)</Lesson>
-        <Lesson area="LE8">Introduction</Lesson>
-        <Lesson area="LE9">Review Session</Lesson>
+        <Lesson area="LE4">
+          <b>Review Session</b>
+        </Lesson>
+        <Lesson area="LE5">
+          <div>
+            <b>Lesson 2</b> (English): Conditional statements, Lists
+          </div>
+        </Lesson>
+        <Lesson area="LE6">
+          <b>Review Session</b>
+        </Lesson>
+        <Lesson area="LE7">
+          <div>
+            <b>Lesson 3</b> (English): Loops, Built in functions
+          </div>
+        </Lesson>
+        <Lesson area="LE8">
+          <b>Introduction</b>
+        </Lesson>
+        <Lesson area="LE9">
+          <b>Review Session</b>
+        </Lesson>
         <Lesson area="LE12">
-          Lesson 1 (English): Basic Operations, Variables, and Data Types, Input
-          and Print, Strings
+          <div>
+            <b>Lesson 1</b>
+            <br />
+            (English): Data Types, Input and Output
+          </div>
         </Lesson>
-        {/* TODO: add from slack */}
         <Lesson area="LE10">
           <div>
             <b>Lesson 1</b>
@@ -64,18 +89,32 @@ export default () => {
             (Hindi + English): Data Types, Input and Output
           </div>
         </Lesson>
-        <Lesson area="LE11">Review Session</Lesson>
+        <Lesson area="LE11">
+          <b>Review Session</b>
+        </Lesson>
         <Lesson area="LE13">
-          Lesson 2<br />
-          (Hindi + English)
+          <div>
+            <b>Lesson 2</b> (Hindi + English): Conditional statements, Lists
+          </div>
         </Lesson>
-        <Lesson area="LE14">Lesson 2 (English)</Lesson>
-        <Lesson area="LE15">Review Session</Lesson>
+        <Lesson area="LE14">
+          <div>
+            <b>Lesson 2</b> (English): Conditional statements, Lists
+          </div>
+        </Lesson>
+        <Lesson area="LE15">
+          <b>Review Session</b>
+        </Lesson>
         <Lesson area="LE16">
-          Lesson 3<br />
-          (Hindi + English)
+          <div>
+            <b>Lesson 3</b> (Hindi + English): Loops, Built in functions
+          </div>
         </Lesson>
-        <Lesson area="LE17">Lesson 3 (English)</Lesson>
+        <Lesson area="LE17">
+          <div>
+            <b>Lesson 3</b> (English): Loops, Built in functions
+          </div>
+        </Lesson>
       </Grid>
     </GridContainer>
   );

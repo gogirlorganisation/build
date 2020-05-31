@@ -23,7 +23,6 @@ export const Lesson = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
 `;
 
 export const THV = styled.div`
