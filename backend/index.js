@@ -29,7 +29,7 @@ app.use(
     store: new RedisStore({ client }),
     secret: process.env.SECRET || crypto.randomBytes(20).toString("hex"),
     cookie: {
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
       httpOnly: true,
     },
   })
