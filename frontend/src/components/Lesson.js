@@ -202,14 +202,6 @@ export default function LessonsComponent() {
                 </Button>
               </li>
               <li>
-                <Button
-                  disabled={p.attendance}
-                  onClick={p.attendance ? () => false : handleAttendance(p.id)}
-                >
-                  {p.attendance ? "Attendance Marked" : "Mark Attendance"}
-                </Button>
-              </li>
-              <li>
                 {p.quizAttempted ? (
                   <Button disabled={true}>
                     Quiz: {p.quizScore} / {p.maxScore}
@@ -223,6 +215,14 @@ export default function LessonsComponent() {
                     Quiz
                   </Button>
                 )}
+              </li>
+              <li>
+                <Button
+                  disabled={p.attendance}
+                  onClick={p.attendance ? () => false : handleAttendance(p.id)}
+                >
+                  {p.attendance ? "Attendance Marked" : "Mark Attendance"}
+                </Button>
               </li>
             </UnorderedList>
           </Card>

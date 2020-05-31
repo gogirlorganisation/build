@@ -13,13 +13,28 @@ const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+  }
+`;
+
+const LogoContainer = styled.div`
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const Logo = styled.img`
   height: 4vh;
 `;
 
-const LogoutBtn = styled.a`
+const Link = styled.a`
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -35,6 +50,15 @@ const LogoutBtn = styled.a`
   &:last-of-type {
     margin-right: 0;
   }
+
+  @media screen and (max-width: 430px) {
+    font-size: 1rem;
+    margin: 0 10px;
+  }
+
+  @media screen and (max-width: 330px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Footer = styled.div`
@@ -43,6 +67,21 @@ const Footer = styled.div`
   justify-content: center;
   align-items: center;
   background: ${(props) => props.theme.lightPink};
+`;
+
+const Links = styled.div`
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    padding-top: 0;
+  }
+
+  @media screen and (max-width: 430px) {
+    padding: 20px 10px;
+    padding-top: 0;
+  }
 `;
 
 export default function Layout({ title, children }) {
@@ -69,16 +108,19 @@ export default function Layout({ title, children }) {
     <>
       <Head title={title} />
       <NavbarContainer>
-        <Logo
-          src="https://thegirlcode.co/img/logo_white.png"
-          alt="TheGirlCode"
-        />
+        <LogoContainer>
+          <Logo
+            src="https://thegirlcode.co/img/logo_white.png"
+            alt="TheGirlCode"
+          />
+        </LogoContainer>
 
-        <div>
-          <LogoutBtn href="/timetable">Time Table</LogoutBtn>
-          <LogoutBtn href="/dashboard">Dashboard</LogoutBtn>
-          <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
-        </div>
+        <Links>
+          <Link href="//thegirlcode.co/about">About</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/timetable">Time Table</Link>
+          <Link onClick={handleLogout}>Logout</Link>
+        </Links>
       </NavbarContainer>
       {children}
       <Footer>
