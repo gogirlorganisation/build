@@ -8,6 +8,7 @@ router.use(check);
 router.get("/s", async (req, res, next) => {
   try {
     const upcoming = await client.lesson.findMany({
+      select: { title: true, date: true },
       where: {
         past: false,
       },
