@@ -7,7 +7,7 @@ import Head from "./Head";
 
 const NavbarContainer = styled.div`
   height: 10vh;
-  background: ${props => props.theme.pink};
+  background: ${(props) => props.theme.pink};
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -25,6 +25,16 @@ const LogoutBtn = styled.a`
   cursor: pointer;
   font-weight: bold;
   font-size: 1.1rem;
+  margin: 0 15px;
+  color: #fff;
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
 `;
 
 const Footer = styled.div`
@@ -32,7 +42,7 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${props => props.theme.lightPink};
+  background: ${(props) => props.theme.lightPink};
 `;
 
 export default function Layout({ title, children }) {
@@ -64,7 +74,11 @@ export default function Layout({ title, children }) {
           alt="TheGirlCode"
         />
 
-        <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+        <div>
+          <LogoutBtn href="/timetable">Time Table</LogoutBtn>
+          <LogoutBtn href="/dashboard">Dashboard</LogoutBtn>
+          <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+        </div>
       </NavbarContainer>
       {children}
       <Footer>

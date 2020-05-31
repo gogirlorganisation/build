@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { useToasts } from "react-toast-notifications";
 
 const Hero = styled.div`
   width: 100%;
@@ -8,7 +10,7 @@ const Hero = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid #eaeaef;
-  background-color: ${props => props.theme.pink};
+  background-color: ${(props) => props.theme.pink};
   padding-bottom: 10vh;
 `;
 
@@ -24,16 +26,11 @@ const Title = styled.div`
   }
 `;
 
-const Points = styled.div`
-  font-size: 1.6rem;
-`;
-
 const Cards = styled.div`
   font-size: 1.6rem;
-  max-width: 1300px;
+  max-width: 800px;
   width: 80%;
   justify-content: center;
-  text-align: center;
   margin: 0 auto;
   @media (max-width: 600px) {
     padding: 10px;
@@ -75,66 +72,161 @@ const CardSubHeader = styled.div`
   }
 `;
 
-const Button = styled.button`
-  margin: 10px 10px 10px 0;
-  float: right;
-  cursor: pointer;
-  display: inline-block;
-  width: 100px;
-  padding: 10px 5px;
-  color: #fff;
-  border: 2px solid #fff;
-  text-align: center;
+const Button = styled.a`
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   outline: none;
   text-decoration: none;
-  border-radius: 5px;
-  background-color: rgba(255, 51, 85, 0.85);
+  margin: 10px 0;
+  color: ${(props) => (props.disabled ? "#b3b3b3" : props.theme.pink)};
+  font-size: 1.1rem;
+`;
 
-  @media (max-width: 800px) {
-    width: 60px;
-    padding: 5px;
-  }
-
-  @media (max-width: 500px) {
-    width: 40px;
-    padding: 5px;
-    margin: 10px 2.5px 10px 0;
-    font-size: 0.7em;
-  }
+const UnorderedList = styled.ul`
+  margin-left: 20px;
+  margin-top: 20px;
 `;
 
 export default function LessonsComponent() {
+  const [upcoming, setUpcoming] = React.useState([]);
+  const [past, setPast] = React.useState([]);
+  const { addToast } = useToasts();
+
+  const fmt = (d) => {
+    const date = new Date(d);
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    return `${
+      months[date.getMonth()]
+    } ${date.getDate()}, ${date.getFullYear()}`;
+  };
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const req = await fetch("/api/lesson/s");
+        const data = await req.json();
+
+        if (data.success) {
+          setUpcoming(data.upcoming);
+          setPast(data.past);
+        } else {
+          addToast(data.message, { appearance: "error" });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const handleAttendance = (id) => async () => {
+    try {
+      const req = await axios.post(`/api/lesson/${id}/attendance`);
+
+      if (req.data.success) {
+        const req_ = await fetch("/api/lesson/s");
+        const data = await req_.json();
+
+        if (data.success) {
+          setUpcoming(data.upcoming);
+          setPast(data.past);
+        } else {
+          addToast(data.message, { appearance: "error" });
+        }
+      } else {
+        addToast(req.data.message, { appearance: "error" });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <Hero>
       <Title>Upcoming Lessons</Title>
       <Cards>
-        <Card>
-          <CardHeader>Lesson 3: Python Fundamentals</CardHeader>
-          <CardSubHeader>1:00pm to 2:00pm IST</CardSubHeader>
-          <CardSubHeader>14th May, 2020</CardSubHeader>
-          <Button>Slides</Button>
-          <Button>Quiz</Button>
-        </Card>
+        {upcoming.map((u, i) => (
+          <Card key={i}>
+            <CardHeader>{u.title}</CardHeader>
+            <CardSubHeader>{fmt(u.date)}</CardSubHeader>
+          </Card>
+        ))}
       </Cards>
       <Title>Past Lessons</Title>
       <Cards>
-        <Card>
-          <CardHeader>Lesson 2: Python Fundamentals</CardHeader>
-          <CardSubHeader>1:00pm to 2:00pm IST</CardSubHeader>
-          <CardSubHeader>14th May, 2020</CardSubHeader>
-          <Button>Video</Button>
-          <Button>Slides</Button>
-          <Button>Quiz</Button>
-        </Card>
-
-        <Card>
-          <CardHeader>Lesson 1: Python Fundamentals</CardHeader>
-          <CardSubHeader>1:00pm to 2:00pm IST</CardSubHeader>
-          <CardSubHeader>14th May, 2020</CardSubHeader>
-          <Button>Video</Button>
-          <Button>Slides</Button>
-          <Button>Quiz</Button>
-        </Card>
+        {past.map((p, i) => (
+          <Card key={i}>
+            <CardHeader>{p.title}</CardHeader>
+            <CardSubHeader>{fmt(p.date)}</CardSubHeader>
+            <UnorderedList>
+              <li>
+                <Button
+                  href={p.materials}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Slides
+                </Button>
+              </li>
+              {/* TODO: Make video page */}
+              <li>
+                <Button
+                  href={p.hindiVideo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Video (Hindi)
+                </Button>
+              </li>
+              <li>
+                <Button
+                  href={p.englishVideo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Video (English)
+                </Button>
+              </li>
+              <li>
+                <Button
+                  disabled={p.attendance}
+                  onClick={p.attendance ? () => false : handleAttendance(p.id)}
+                >
+                  {p.attendance ? "Attendance Marked" : "Mark Attendance"}
+                </Button>
+              </li>
+              <li>
+                {p.quizAttempted ? (
+                  <Button disabled={true}>
+                    Quiz: {p.quizScore} / {p.maxScore}
+                  </Button>
+                ) : (
+                  <Button
+                    href={p.quiz}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Quiz
+                  </Button>
+                )}
+              </li>
+            </UnorderedList>
+          </Card>
+        ))}
       </Cards>
     </Hero>
   );

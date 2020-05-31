@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const T = styled.div`
   grid-area: ${(props) => props.area};
   background: ${(props) => props.theme.pink};
-  background: #989898;
+  background: #555;
   display: flex;
   justify-content: center;
   align-items: center;

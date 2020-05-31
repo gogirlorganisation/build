@@ -7,15 +7,16 @@ const GlobalStyles = createGlobalStyle`
   body,
   #root {
     height: 100%;
-    width: 100%;
+    width: 100vw;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   *,
   *:before,
   *:after {
-    font-family: ${props => props.theme.fonts};
+    font-family: ${(props) => props.theme.fonts};
     font-size: 1rem;
     box-sizing: border-box;
     margin: 0;

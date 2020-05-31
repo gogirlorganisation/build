@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
 
 router.use("/auth", require("./auth"));
 router.use("/u", require("./user"));
+router.use("/lesson", require("./lessons"));
 
 router.get("*", (req, res, next) => {
   const e = new Error("Not found");
