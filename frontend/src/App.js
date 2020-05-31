@@ -8,6 +8,7 @@ import Login from "./pages/index";
 import Dashboard from "./pages/dashboard";
 import Initial from "./pages/initial";
 import TimeTable from "./pages/time-table";
+import Video from "./pages/video";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
@@ -25,6 +26,7 @@ function App() {
               <Route exact path="/initial" component={Initial} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/timetable" component={TimeTable} />
+              <Route exact path="/video/:vid" component={Video} />
             </Switch>
           </Router>
         </AuthContext.Provider>

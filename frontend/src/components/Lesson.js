@@ -182,22 +182,11 @@ export default function LessonsComponent() {
                   Slides
                 </Button>
               </li>
-              {/* TODO: Make video page */}
               <li>
-                <Button
-                  href={p.hindiVideo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Video (Hindi)
-                </Button>
+                <Button href={`/video/${p.hindiVideo}`}>Video (Hindi)</Button>
               </li>
               <li>
-                <Button
-                  href={p.englishVideo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Button href={`/video/${p.englishVideo}`}>
                   Video (English)
                 </Button>
               </li>
