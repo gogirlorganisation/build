@@ -32,30 +32,49 @@ export default () => {
         <T area="TH5">Friday</T>
         <T area="TH6">Saturday</T>
         <T area="TH7">Sunday</T>
-        <T area="TV1">05:00PM</T>
-        <T area="TV2">06:00PM</T>
-        <T area="TV3">07:00PM</T>
-        <T area="TV4">08:00PM</T>
-        <T area="TV5">09:00PM</T>
-        <T area="TV6">10:00PM</T>
-        <T area="TV7">11:00PM</T>
-        <T area="TV8">12:00PM</T>
+        <T area="TV1">05:00PM IST</T>
+        <T area="TV2">06:00PM IST</T>
+        <T area="TV3">07:00PM IST</T>
+        <T area="TV4">08:00PM IST</T>
+        <T area="TV5">09:00PM IST</T>
+        <T area="TV6">10:00PM IST</T>
+        <T area="TV7">11:00PM IST</T>
+        <T area="TV8">12:00PM IST</T>
         <Lesson area="LE1">Introduction</Lesson>
         <Lesson area="LE2">Review Session</Lesson>
-        <Lesson area="LE3">Lesson 1 (English)</Lesson>
+        <Lesson area="LE3">
+          Lesson 1 (English): Basic Operations, Variables, and Data Types, Input
+          and Print, Strings
+        </Lesson>
         <Lesson area="LE4">Review Session</Lesson>
         <Lesson area="LE5">Lesson 2 (English)</Lesson>
         <Lesson area="LE6">Review Session</Lesson>
         <Lesson area="LE7">Lesson 3 (English)</Lesson>
         <Lesson area="LE8">Introduction</Lesson>
         <Lesson area="LE9">Review Session</Lesson>
-        <Lesson area="LE12">Lesson 1 (English)</Lesson>
-        <Lesson area="LE10">Lesson 1 (Hindi + English)</Lesson>
+        <Lesson area="LE12">
+          Lesson 1 (English): Basic Operations, Variables, and Data Types, Input
+          and Print, Strings
+        </Lesson>
+        {/* TODO: add from slack */}
+        <Lesson area="LE10">
+          <div>
+            <b>Lesson 1</b>
+            <br />
+            (Hindi + English): Data Types, Input and Output
+          </div>
+        </Lesson>
         <Lesson area="LE11">Review Session</Lesson>
-        <Lesson area="LE13">Lesson 2 (Hindi + English)</Lesson>
+        <Lesson area="LE13">
+          Lesson 2<br />
+          (Hindi + English)
+        </Lesson>
         <Lesson area="LE14">Lesson 2 (English)</Lesson>
         <Lesson area="LE15">Review Session</Lesson>
-        <Lesson area="LE16">Lesson 3 (Hindi + English)</Lesson>
+        <Lesson area="LE16">
+          Lesson 3<br />
+          (Hindi + English)
+        </Lesson>
         <Lesson area="LE17">Lesson 3 (English)</Lesson>
       </Grid>
     </GridContainer>

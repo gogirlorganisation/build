@@ -10,14 +10,20 @@ export const T = styled.div`
   color: #ffffff;
   font-weight: bold;
   font-size: 1.1rem;
+  border-radius: 2px;
 `;
 
 export const Lesson = styled.div`
   grid-area: ${(props) => props.area};
   background: ${(props) => props.theme.lightPink};
   background: #eaeaef;
-  border-left: 5px solid ${(props) => props.theme.pink};
+  /* border-left: 5px solid ${(props) => props.theme.pink}; */
   padding: 15px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
 `;
 
 export const THV = styled.div`
@@ -33,6 +39,7 @@ export const THV = styled.div`
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.2rem;
+  border-radius: 2px;
 `;
 
 export const GridContainer = styled.div`
@@ -46,7 +53,7 @@ export const GridT = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  gap: 3px 3px;
+  gap: 5px 5px;
   margin: 50px auto;
   height: 675px;
   min-width: 1200px;
