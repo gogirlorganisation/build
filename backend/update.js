@@ -21,6 +21,11 @@ async function findOrCreateRecord(row, lessonId) {
       return true;
     }
 
+    const lesson = await client.lesson.findOne({ where: { id: lessonId } });
+    if (!lesson.past) {
+      return false;
+    }
+
     const uq = await client.userQuiz.findMany({
       where: { lessonId: lessonId, userId: user.id },
     });
