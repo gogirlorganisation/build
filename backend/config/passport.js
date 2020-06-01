@@ -30,6 +30,14 @@ passport.use(
           data: { email, password: await bcrypt.hash(password, 14) },
         });
 
+        // Add donr badge
+        await client.badge.create({
+          data: {
+            User: { connect: { id: user_.id } },
+            img: "https://i.imgur.com/8DmfRD8.png",
+          },
+        });
+
         return done(null, user_);
       }
     }

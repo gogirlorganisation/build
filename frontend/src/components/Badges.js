@@ -9,7 +9,7 @@ const Hero = styled.div`
   align-items: center;
   border-bottom: 2px solid #eaeaef;
   padding: 5vh 0 10vh 0;
-  background-color: ${props => props.theme.pink};
+  background-color: ${(props) => props.theme.pink};
   color: white;
 `;
 
@@ -47,7 +47,7 @@ const Card = styled.div`
   display: inline-block;
   background: #fff;
   border: none;
-  padding: 40px;
+  padding: 20px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
   transition: all 250ms ease;
   border-radius: 20px;
@@ -101,7 +101,7 @@ export default function BadgesComponent() {
         {badges.length === 0 ? (
           <NoBadges>You do not have any badges.</NoBadges>
         ) : (
-          badges.map(b => (
+          badges.map((b) => (
             <Card>
               <BadgeImg src={b.img} alt="Badge" />
             </Card>
