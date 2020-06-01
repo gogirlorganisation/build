@@ -109,6 +109,8 @@ async function main() {
   return Promise.all(p);
 }
 
+console.log(`\n${Date.now()} Begin script`);
 main().then(() => {
+  console.log(`${Date.now()} End script\n`);
   process.exit();
 });
