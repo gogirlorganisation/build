@@ -142,6 +142,7 @@ export default function Layout({ title, children, fetchuser }) {
           {authenticated && <Link href="/dashboard">Home</Link>}
           <Link href="/leaderboard">Leaderboard</Link>
           <Link href="/timetable">Timetable</Link>
+          {!authenticated && <Link href="/">Login</Link>}
           {authenticated && <Link onClick={handleLogout}>Logout</Link>}
         </Links>
       </NavbarContainer>

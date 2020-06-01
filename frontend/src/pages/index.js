@@ -3,13 +3,12 @@ import styled from "styled-components";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
 import { useHistory } from "react-router-dom";
-import Head from "../components/Layout/Head";
+import Layout from "../components/Layout";
 import withAuth from "../lib/with-auth.js";
 
 const Container = styled.div`
-  height: 100%;
+  min-height: 80vh;
   width: 100%;
-  background: ${props => props.theme.lightPink};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +19,9 @@ const Box = styled.div`
   width: 95%;
   background: #fff;
   padding: 20px;
-  border-top: 6px solid ${props => props.theme.pink};
+  border-top: 6px solid ${(props) => props.theme.pink};
+  background: #fefefe;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.04);
 `;
 
 const Heading = styled.h1`
@@ -41,7 +42,7 @@ const Input = styled.input`
   &:focus,
   &:active {
     outline: none;
-    border-color: ${props => props.theme.pink};
+    border-color: ${(props) => props.theme.pink};
   }
 `;
 
@@ -60,7 +61,7 @@ const Button = styled.button`
   font-weight: bold;
   text-transform: uppercase;
   color: #fff;
-  background: ${props => props.theme.pink};
+  background: ${(props) => props.theme.pink};
   border: none;
   border-radius: 4px;
 `;
@@ -98,29 +99,30 @@ function Home() {
 
   return (
     <>
-      <Head title="Login" />
-      <Container>
-        <Box>
-          <Heading>Login</Heading>
-          <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <ButtonContainer>
-            <Button onClick={handleSubmit} disabled={submitting}>
-              Login
-            </Button>
-          </ButtonContainer>
-        </Box>
-      </Container>
+      <Layout title="Login">
+        <Container>
+          <Box>
+            <Heading>Login</Heading>
+            <Input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <ButtonContainer>
+              <Button onClick={handleSubmit} disabled={submitting}>
+                Login
+              </Button>
+            </ButtonContainer>
+          </Box>
+        </Container>
+      </Layout>
     </>
   );
 }
