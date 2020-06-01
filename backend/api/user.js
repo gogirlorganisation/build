@@ -4,9 +4,7 @@ const { check } = require("../lib/auth");
 
 const client = new PrismaClient();
 
-router.use(check);
-
-router.get("/badges", async (req, res, next) => {
+router.get("/badges", check, async (req, res, next) => {
   try {
     const badges = await client.user
       .findOne({ where: { id: req.user.id } })
