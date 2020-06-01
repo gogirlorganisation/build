@@ -176,35 +176,51 @@ export default function LessonsComponent() {
             <CardSubHeader>{fmt(p.date)}</CardSubHeader>
             <UnorderedList>
               <li>
-                <Button
-                  href={p.materials}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Slides
-                </Button>
-              </li>
-              <li>
-                <Button href={`/video/${p.hindiVideo}`}>Video (Hindi)</Button>
-              </li>
-              <li>
-                <Button href={`/video/${p.englishVideo}`}>
-                  Video (English)
-                </Button>
-              </li>
-              <li>
-                {p.quizAttempted ? (
-                  <Button disabled={true}>
-                    Quiz: {p.quizScore} / {p.maxScore}
-                  </Button>
-                ) : (
+                {p.materials ? (
                   <Button
-                    href={p.quiz}
+                    href={p.materials}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Quiz
+                    Slides
                   </Button>
+                ) : (
+                  <Button disabled={true}>Slides</Button>
+                )}
+              </li>
+              <li>
+                {p.hindiVideo ? (
+                  <Button href={`/video/${p.hindiVideo}`}>Video (Hindi)</Button>
+                ) : (
+                  <Button disabled={true}>Video (Hindi)</Button>
+                )}
+              </li>
+              <li>
+                {p.englishVideo ? (
+                  <Button href={`/video/${p.englishVideo}`}>
+                    Video (English)
+                  </Button>
+                ) : (
+                  <Button disabled={true}>Video (English)</Button>
+                )}
+              </li>
+              <li>
+                {p.quiz ? (
+                  p.quizAttempted ? (
+                    <Button disabled={true}>
+                      Quiz: {p.quizScore} / {p.maxScore}
+                    </Button>
+                  ) : (
+                    <Button
+                      href={p.quiz}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quiz
+                    </Button>
+                  )
+                ) : (
+                  <Button disabled={true}>Quiz</Button>
                 )}
               </li>
               <li>
