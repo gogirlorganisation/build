@@ -144,6 +144,8 @@ export default function LessonsComponent() {
         if (data.success) {
           setUpcoming(data.upcoming);
           setPast(data.past);
+
+          console.log(data.past);
         } else {
           addToast(data.message, { appearance: "error" });
         }
@@ -206,12 +208,22 @@ export default function LessonsComponent() {
                 )}
               </li>
               <li>
-                <Button
-                  disabled={p.attendance}
-                  onClick={p.attendance ? () => false : handleAttendance(p.id)}
-                >
-                  {p.attendance ? "Attendance Marked" : "Mark Attendance"}
-                </Button>
+                {p.attendanceOpen ? (
+                  <Button
+                    disabled={p.attendance}
+                    onClick={
+                      p.attendance ? () => false : handleAttendance(p.id)
+                    }
+                  >
+                    {p.attendance ? "Attendance Marked" : "Mark Attendance"}
+                  </Button>
+                ) : (
+                  <Button disabled={true}>
+                    {p.attendance
+                      ? "Attendance Marked"
+                      : "Attendance Not Marked"}
+                  </Button>
+                )}
               </li>
             </UnorderedList>
           </Card>

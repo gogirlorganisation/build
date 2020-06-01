@@ -22,7 +22,7 @@ async function findOrCreateRecord(row, lessonId) {
     }
 
     const lesson = await client.lesson.findOne({ where: { id: lessonId } });
-    if (!lesson.past) {
+    if (!lesson || !lesson.past) {
       return false;
     }
 

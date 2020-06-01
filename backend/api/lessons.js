@@ -60,6 +60,14 @@ router.get("/s", async (req, res, next) => {
 
 router.post("/:id/attendance", async (req, res, next) => {
   try {
+    const lesson = await client.lesson.findOne({
+      where: { id: parseInt(req.params.id, 10) },
+    });
+
+    if (!lesson || !lesson.past || !lesson.attendanceOpen) {
+      return res.json({ success: false, message: "Invalid lesson" });
+    }
+
     const attendance = await client.attendance.create({
       data: {
         lesson: { connect: { id: parseInt(req.params.id, 10) } },
