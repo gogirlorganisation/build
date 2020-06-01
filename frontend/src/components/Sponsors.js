@@ -10,8 +10,12 @@ const Hero = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid #eaeaef;
   padding: 5vh 0;
+  background: ${(props) => props.theme.pink};
+
+  * {
+    color: #fff;
+  }
 `;
 
 const Title = styled.div`
@@ -25,16 +29,30 @@ const Title = styled.div`
 `;
 
 const Sponsors = styled.div`
-  max-width: 900px;
+  max-width: 950px;
   width: 100%;
+  margin-top: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 `;
 
+const Card = styled.div`
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.09);
+`;
+
 const Sponsor = styled.img`
-  margin: 20px;
+  background: #fff;
 `;
 
 export default function SponsorsComponent() {
@@ -42,17 +60,23 @@ export default function SponsorsComponent() {
     <Hero>
       <Title>Sponsors</Title>
       <Sponsors>
-        <Sponsor
-          src={doi}
-          alt="DigitalOcean"
-          style={{ height: "150px", width: "auto" }}
-        />
-        <Sponsor
-          src={qualified}
-          alt="Qualified"
-          style={{ width: "200px", height: "auto" }}
-        />
-        <Sponsor src={bb} alt="" style={{ height: "150px", width: "auto" }} />
+        <Card height="250px" width="250px">
+          <Sponsor
+            src={doi}
+            alt="DigitalOcean"
+            style={{ height: "200px", width: "auto" }}
+          />
+        </Card>
+        <Card height="250px" width="250px">
+          <Sponsor
+            src={qualified}
+            alt="Qualified"
+            style={{ width: "220px", height: "auto" }}
+          />
+        </Card>
+        <Card height="250px" width="250px">
+          <Sponsor src={bb} alt="" style={{ height: "200px", width: "auto" }} />
+        </Card>
       </Sponsors>
     </Hero>
   );

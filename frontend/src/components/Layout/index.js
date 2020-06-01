@@ -66,7 +66,11 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme.lightPink};
+  background: ${(props) => props.theme.pink};
+  color: #fff;
+  * {
+    color: #fff;
+  }
 `;
 
 const Links = styled.div`

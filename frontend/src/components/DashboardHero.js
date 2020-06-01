@@ -39,19 +39,6 @@ const Points = styled.div`
   }
 `;
 
-const Container = styled.div`
-  width: 90%;
-  max-width: 1000px;
-  font-size: 1.6rem;
-  background-color: #ddd;
-`;
-
-const Level = styled.div`
-  width: 30%;
-  background-color: rgba(255, 51, 85, 0.85);
-  padding: 5px 0;
-`;
-
 export default function HeroComponent() {
   const {
     user: { name, points },

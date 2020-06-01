@@ -9,7 +9,6 @@ const Hero = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid #eaeaef;
   background-color: ${(props) => props.theme.pink};
   padding-bottom: 10vh;
 `;
@@ -44,7 +43,7 @@ const Card = styled.div`
   background: #fff;
   border: none;
   padding: 40px;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.09);
   transition: all 250ms ease;
   &:hover {
     transform: translateY(-5px);

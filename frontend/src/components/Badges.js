@@ -8,68 +8,39 @@ const Hero = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid #eaeaef;
-  padding: 5vh 0 10vh 0;
-  background-color: ${(props) => props.theme.pink};
-  color: white;
+  padding: 50px 0;
 `;
 
 const Title = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
-  color: white;
 
   @media screen and (max-width: 550px) {
     font-size: 1.8rem;
   }
 `;
 
-const Cards = styled.div`
-  max-width: 1200px;
-  width: 80%;
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  text-align: center;
-
-  @media screen and (max-width: 1200px) {
-    display: block;
-    width: 90%;
-  }
-`;
-
-const Card = styled.div`
-  margin: 10px 20px;
-  width: 30%;
-  height: 30vh;
-  min-height: 220px;
-  cursor: pointer;
-  display: inline-block;
-  background: #fff;
-  border: none;
-  padding: 20px;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.06);
-  transition: all 250ms ease;
-  border-radius: 20px;
-  &:hover {
-    transform: translateY(-5px);
-  }
-
-  @media (max-width: 1200px) {
-    width: 50%;
-    min-width: 220px;
-  }
-`;
-
 const NoBadges = styled.div`
-  margin: 30px auto;
+  margin: 15px auto;
   font-size: 1.1rem;
-  color: #fff;
 `;
 
-const BadgeImg = styled.img`
-  height: 90%;
+const Badges = styled.div`
+  max-width: 900px;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
+
+const Badge = styled.img`
+  height: 25vh;
   width: auto;
+  margin: 20px;
 `;
 
 export default function BadgesComponent() {
@@ -97,17 +68,13 @@ export default function BadgesComponent() {
   return (
     <Hero>
       <Title>My Badges</Title>
-      <Cards>
+      <Badges>
         {badges.length === 0 ? (
           <NoBadges>You do not have any badges.</NoBadges>
         ) : (
-          badges.map((b) => (
-            <Card>
-              <BadgeImg src={b.img} alt="Badge" />
-            </Card>
-          ))
+          badges.map((b) => <Badge src={b.img} alt="Badge" />)
         )}
-      </Cards>
+      </Badges>
     </Hero>
   );
 }
