@@ -4,7 +4,7 @@ import AuthContext from "../lib/auth-context";
 
 const Hero = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
