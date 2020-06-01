@@ -26,6 +26,7 @@ router.get("/badges", async (req, res, next) => {
 router.get("/leaderboard", async (req, res, next) => {
   try {
     const users = await client.user.findMany({
+      where: { name: { not: null } },
       orderBy: { points: "desc" },
       select: { name: true, points: true },
     });

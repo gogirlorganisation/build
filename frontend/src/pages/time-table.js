@@ -10,7 +10,7 @@ const Container = styled.div`
 
 export default () => {
   return (
-    <Layout title="Time Table">
+    <Layout title="Time Table" fetchuser={true}>
       <Container>
         <Week1 />
       </Container>

@@ -88,8 +88,9 @@ const Links = styled.div`
   }
 `;
 
-export default function Layout({ title, children }) {
-  const { setLoggedIn, setUser } = React.useContext(AuthContext);
+export default function Layout({ title, children, fetchuser }) {
+  const { setLoggedIn, setUser, isLoggedIn } = React.useContext(AuthContext);
+  const [authenticated, setAuthenticated] = React.useState(isLoggedIn);
   const { addToast } = useToasts();
   const history = useHistory();
 
@@ -108,6 +109,24 @@ export default function Layout({ title, children }) {
     }
   };
 
+  React.useEffect(() => {
+    async function fetchUser() {
+      try {
+        const data = await (
+          await fetch("/api/auth/me", {
+            method: "POST",
+          })
+        ).json();
+
+        setAuthenticated(data.authenticated);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    fetchuser && fetchUser();
+  }, []);
+
   return (
     <>
       <Head title={title} />
@@ -120,10 +139,10 @@ export default function Layout({ title, children }) {
         </LogoContainer>
 
         <Links>
-          <Link href="//thegirlcode.co/about">About</Link>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/timetable">Time Table</Link>
-          <Link onClick={handleLogout}>Logout</Link>
+          {authenticated && <Link href="/dashboard">Home</Link>}
+          <Link href="/leaderboard">Leaderboard</Link>
+          <Link href="/timetable">Timetable</Link>
+          {authenticated && <Link onClick={handleLogout}>Logout</Link>}
         </Links>
       </NavbarContainer>
       {children}

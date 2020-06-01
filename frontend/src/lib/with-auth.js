@@ -17,7 +17,7 @@ export default (Component, authenticated, fallback) =>
           })
         ).json();
 
-        this.context.setLoggedIn(data.auth);
+        this.context.setLoggedIn(data.authenticated);
         this.context.setUser(data.user);
 
         if (data.authenticated === authenticated) {

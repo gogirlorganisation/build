@@ -9,6 +9,7 @@ import Dashboard from "./pages/dashboard";
 import Initial from "./pages/initial";
 import TimeTable from "./pages/time-table";
 import Video from "./pages/video";
+import Leaderboard from "./pages/leaderboard";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
@@ -26,6 +27,7 @@ function App() {
               <Route exact path="/initial" component={Initial} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/timetable" component={TimeTable} />
+              <Route exact path="/leaderboard" component={Leaderboard} />
               <Route exact path="/video/:vid" component={Video} />
             </Switch>
           </Router>
