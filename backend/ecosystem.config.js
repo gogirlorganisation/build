@@ -15,7 +15,7 @@ module.exports = {
     {
       name: "update",
       script: "./update.js",
-      cron_restart: "*/20 * * * *",
+      cron_restart: "*/5 * * * *",
       autorestart: false,
       env: {
         MYSQL_URL:
