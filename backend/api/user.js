@@ -30,12 +30,14 @@ router.get("/leaderboard", async (req, res, next) => {
         where: { name: { not: null } },
         select: { name: true, id: true },
       })
-    ).map((u) => ({
-      ...u,
-      points: uq
-        .filter((uq_) => uq_.userId === u.id)
-        .reduce((p, c) => p + c.score, 0),
-    }));
+    )
+      .map((u) => ({
+        ...u,
+        points: uq
+          .filter((uq_) => uq_.userId === u.id)
+          .reduce((p, c) => p + c.score, 0),
+      }))
+      .sort((a, b) => a.points - b.points);
 
     res.json({
       success: true,
