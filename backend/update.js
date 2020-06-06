@@ -49,12 +49,6 @@ async function findOrCreateRecord(email, score, lessonId) {
         },
       });
 
-      // Add points to user
-      await client.user.update({
-        where: { id: user.id },
-        data: { points: user.points + score },
-      });
-
       console.log(
         `${Date.now()} UserQuiz record with id ${uq_.id} created for user ${
           user.id
