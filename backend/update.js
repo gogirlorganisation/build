@@ -5,14 +5,23 @@ const client = new PrismaClient();
 
 const sheets = {
   // [sheetId]: lessonId
-  "1E3DN61IFU-JDfItuys09RWqangRUAnT6namTmJaWjwM": 1,
+  "1E3DN61IFU-JDfItuys09RWqangRUAnT6namTmJaWjwM": {
+    lessonId: 1,
+    email: (row) => row._rawData[3],
+    score: (row) => parseInt(row._rawData[1].split("/")[0], 10),
+  },
+  "17-HfvtKhlZN-9u01AZD1cH523e5OzjcjK2jPkZTAZbM": {
+    lessonId: 5,
+    email: (row) => row._rawData[4],
+    score: (row) => parseInt(row._rawData[1].split("/")[0], 10),
+  },
 };
 
-async function findOrCreateRecord(row, lessonId) {
+async function findOrCreateRecord(email, score, lessonId) {
   try {
     // Check if user exists
     const user = await client.user.findOne({
-      where: { email: row._rawData[3] },
+      where: { email },
     });
 
     if (!user) {
@@ -31,8 +40,6 @@ async function findOrCreateRecord(row, lessonId) {
     });
 
     if (uq.length === 0) {
-      const score = parseInt(row._rawData[1].split("/")[0], 10);
-
       // Create new record
       const uq_ = await client.userQuiz.create({
         data: {
@@ -63,7 +70,7 @@ async function findOrCreateRecord(row, lessonId) {
   }
 }
 
-async function diff(sheetId, lessonId) {
+async function diff(sheetId, lessonId, emailFn, scoreFn) {
   try {
     const doc = new GoogleSpreadsheet(sheetId);
     await doc.useServiceAccountAuth(creds);
@@ -79,12 +86,12 @@ async function diff(sheetId, lessonId) {
         if (n < rawRows.length) {
           const row = rawRows[rawRows.length - n];
 
-          if (
-            row._rawData.length === 14 &&
-            row._rawData[1] !== "" &&
-            row._rawData[3] !== ""
-          ) {
-            newRecord = await findOrCreateRecord(row, lessonId);
+          if (emailFn(row) && scoreFn(row)) {
+            newRecord = await findOrCreateRecord(
+              emailFn(row),
+              scoreFn(row),
+              lessonId
+            );
           }
 
           n++;
@@ -108,7 +115,14 @@ async function main() {
   const p = [];
 
   for (let sheetId of Object.keys(sheets)) {
-    p.push(diff(sheetId, sheets[sheetId]));
+    p.push(
+      diff(
+        sheetId,
+        sheets[sheetId].lessonId,
+        sheets[sheetId].email,
+        sheets[sheetId].score
+      )
+    );
   }
 
   return Promise.all(p);
