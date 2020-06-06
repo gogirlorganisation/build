@@ -37,7 +37,7 @@ router.get("/leaderboard", async (req, res, next) => {
           .filter((uq_) => uq_.userId === u.id)
           .reduce((p, c) => p + c.score, 0),
       }))
-      .sort((a, b) => a.points - b.points);
+      .sort((a, b) => b.points - a.points);
 
     res.json({
       success: true,
