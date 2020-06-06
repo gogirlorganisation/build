@@ -17,7 +17,7 @@ router.post("/login", (req, res, next) =>
     }
 
     if (user) {
-      return req.logIn(user, err => {
+      return req.logIn(user, (err) => {
         if (err) {
           const err_ = new Error();
           err_.message = err;
@@ -72,8 +72,20 @@ router.post("/logout", (req, res) => {
   });
 });
 
-router.post("/me", (req, res) =>
-  res.status(200).json({ authenticated: req.isAuthenticated(), user: req.user })
+router.post("/me", async (req, res) =>
+  res
+    .status(200)
+    .json({
+      authenticated: req.isAuthenticated(),
+      user: {
+        ...req.user,
+        points: (
+          await client.userQuiz.findMany({
+            where: { user: { id: req.user.id } },
+          })
+        ).reduce((p, c) => p + c.score, 0),
+      },
+    })
 );
 
 module.exports = router;

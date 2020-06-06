@@ -23,11 +23,19 @@ router.get("/badges", check, async (req, res, next) => {
 
 router.get("/leaderboard", async (req, res, next) => {
   try {
-    const users = await client.user.findMany({
-      where: { name: { not: null } },
-      orderBy: { points: "desc" },
-      select: { name: true, points: true },
-    });
+    const uq = await client.userQuiz.findMany();
+
+    const users = (
+      await client.user.findMany({
+        where: { name: { not: null } },
+        select: { name: true, id: true },
+      })
+    ).map((u) => ({
+      ...u,
+      points: uq
+        .filter((uq_) => uq_.userId === u.id)
+        .reduce((p, c) => p + c.score, 0),
+    }));
 
     res.json({
       success: true,
