@@ -36,7 +36,7 @@ async function findOrCreateRecord(email, score, lessonId) {
     }
 
     const uq = await client.userQuiz.findMany({
-      where: { lessonId: lessonId, userId: user.id },
+      where: { lesson: { id: lessonId }, user: { id: user.id } },
     });
 
     if (uq.length === 0) {
