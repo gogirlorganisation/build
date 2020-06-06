@@ -78,27 +78,14 @@ async function diff(sheetId, lessonId, emailFn, scoreFn) {
 
     const rawRows = await doc.sheetsByIndex[0].getRows();
 
-    if (rawRows.length > 0) {
-      let n = 1;
-      let newRecord;
-
-      do {
-        if (n < rawRows.length) {
-          const row = rawRows[rawRows.length - n];
-
-          if (emailFn(row) && scoreFn(row)) {
-            newRecord = await findOrCreateRecord(
-              emailFn(row),
-              scoreFn(row),
-              lessonId
-            );
-          }
-
-          n++;
-        } else {
-          break;
-        }
-      } while (newRecord);
+    for (let row of rawRows) {
+      if (emailFn(row) && scoreFn(row)) {
+        newRecord = await findOrCreateRecord(
+          emailFn(row),
+          scoreFn(row),
+          lessonId
+        );
+      }
     }
 
     // 1. Get last row
