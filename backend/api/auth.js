@@ -73,19 +73,19 @@ router.post("/logout", (req, res) => {
 });
 
 router.post("/me", async (req, res) =>
-  res
-    .status(200)
-    .json({
-      authenticated: req.isAuthenticated(),
-      user: {
-        ...req.user,
-        points: (
-          await client.userQuiz.findMany({
-            where: { user: { id: req.user.id } },
-          })
-        ).reduce((p, c) => p + c.score, 0),
-      },
-    })
+  res.status(200).json({
+    authenticated: req.isAuthenticated(),
+    user: req.isAuthenticated()
+      ? {
+          ...req.user,
+          points: (
+            await client.userQuiz.findMany({
+              where: { user: { id: req.user.id } },
+            })
+          ).reduce((p, c) => p + c.score, 0),
+        }
+      : null,
+  })
 );
 
 module.exports = router;
