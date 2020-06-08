@@ -15,6 +15,17 @@ const sheets = {
     email: (row) => row._rawData[4],
     score: (row) => parseInt(row._rawData[1].split("/")[0], 10),
   },
+  "1HB5CgOsMUWB9SD27XoZDz7NTCOVzY3G6TQB-LByRvEk": {
+    lessonId: 6,
+    email: (row) => row._rawData[3],
+    score: (row) => parseInt(row._rawData[1].split("/")[0], 10),
+  },
+  // Quiz 4
+  // "1gCu7_StBQ9VDWAWCBMQtZh3CfaKZFpEh01AuaYsYsZw": {
+  //   lessonId: 7,
+  //   email: (row) => row._rawData[4],
+  //   score: (row) => parseInt(row._rawData[1].split("/")[2], 10),
+  // },
 };
 
 async function findOrCreateRecord(email, score, lessonId) {
@@ -28,11 +39,6 @@ async function findOrCreateRecord(email, score, lessonId) {
       // Return true here because the row before this may
       // have a registered user
       return true;
-    }
-
-    const lesson = await client.lesson.findOne({ where: { id: lessonId } });
-    if (!lesson || !lesson.past) {
-      return false;
     }
 
     const uq = await client.userQuiz.findMany({
@@ -96,6 +102,21 @@ async function main() {
   const p = [];
 
   for (let sheetId of Object.keys(sheets)) {
+    console.log(
+      `${Date.now()} Checking ${sheetId} for lesson#${sheets[sheetId].lessonId}`
+    );
+    const lesson = await client.lesson.findOne({
+      where: { id: sheets[sheetId].lessonId },
+    });
+    if (!lesson || !lesson.past) {
+      console.log(
+        `${Date.now()} Invalid lessonId ${
+          sheets[sheetId].lessonId
+        } for sheetId ${sheetId}, skipping`
+      );
+      continue;
+    }
+
     p.push(
       diff(
         sheetId,
