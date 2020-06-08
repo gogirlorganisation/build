@@ -39,7 +39,7 @@ export default () => {
         <T area="TV5">09:00PM IST</T>
         <T area="TV6">10:00PM IST</T>
         <T area="TV7">11:00PM IST</T>
-        <T area="TV8">12:00PM IST</T>
+        <T area="TV8">12:00AM IST</T>
         <Lesson area="LE1">
           <b>Introduction</b>
         </Lesson>

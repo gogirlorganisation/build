@@ -23,6 +23,7 @@ export const Lesson = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const THV = styled.div`
@@ -46,6 +47,7 @@ export const GridContainer = styled.div`
   overflow-x: auto;
   padding: 0 50px;
   position: relative;
+  margin: 50px 0;
 `;
 
 export const GridT = styled.div`
