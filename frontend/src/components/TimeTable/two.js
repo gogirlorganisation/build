@@ -76,7 +76,7 @@ export default () => {
         <Lesson area="L9">
           <b>Review Session</b> Python
         </Lesson>
-        <Lesson area="L10" style={{ background: "#ffc4df" }}>
+        <Lesson area="L10" style={{ background: "#2977f542" }}>
           <b>Shooting Game</b> Lesson 1 (English + Hindi)
         </Lesson>
         <Lesson area="L11" style={{ background: "#ffc4df" }}>
@@ -85,7 +85,7 @@ export default () => {
         <Lesson area="L12" style={{ background: "#ffc4df" }}>
           <b>Tetris Game</b> Lesson 2 (English)
         </Lesson>
-        <Lesson area="L13" style={{ background: "#ffc4df" }}>
+        <Lesson area="L13" style={{ background: "#2977f542" }}>
           <b>Review Session</b> Shooting Game
         </Lesson>
       </Grid>
