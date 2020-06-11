@@ -21,11 +21,11 @@ const sheets = {
     score: (row) => parseInt(row._rawData[1].split("/")[0], 10),
   },
   // Quiz 4
-  // "1gCu7_StBQ9VDWAWCBMQtZh3CfaKZFpEh01AuaYsYsZw": {
-  //   lessonId: 7,
-  //   email: (row) => row._rawData[4],
-  //   score: (row) => parseInt(row._rawData[1].split("/")[2], 10),
-  // },
+  "1gCu7_StBQ9VDWAWCBMQtZh3CfaKZFpEh01AuaYsYsZw": {
+    lessonId: 7,
+    email: (row) => row._rawData[3],
+    score: (row) => parseInt(row._rawData[6].split("/")[0], 10),
+  },
 };
 
 async function findOrCreateRecord(email, score, lessonId) {
