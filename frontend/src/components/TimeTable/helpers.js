@@ -44,7 +44,7 @@ export const THV = styled.div`
 
 export const GridContainer = styled.div`
   width: ${(props) => props.width};
-  overflow-x: auto;
+  /* overflow-x: auto; */
   padding: 0 50px;
   position: relative;
   margin: 50px 0;

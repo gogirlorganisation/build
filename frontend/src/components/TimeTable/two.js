@@ -27,7 +27,7 @@ export default () => {
   return (
     <GridContainer width={width}>
       <Grid>
-        <THV>Week 2 (TBD)</THV>
+        <THV>Week 2</THV>
         <T area="TH1">Monday</T>
         <T area="TH2">Tuesday</T>
         <T area="TH3">Wednesday</T>
