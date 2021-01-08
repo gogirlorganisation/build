@@ -40,9 +40,9 @@ router.get("/s", async (req, res, next) => {
 
       return {
         ...p,
-        attendance: a?.present || false,
+        attendance: a.present || false,
         quizAttempted: !!q,
-        quizScore: q?.score || 0,
+        quizScore: q.score || 0,
       };
     });
 

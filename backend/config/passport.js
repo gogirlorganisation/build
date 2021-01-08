@@ -27,7 +27,7 @@ passport.use(
         } else {
           if (!doc) {
             doc = new GoogleSpreadsheet(
-              "1afUKSPP8DHlY8k5viFhlmJjQ4DcQbHvGMmmvUS5UtDw"
+              process.env.SHEETS_URL
             );
             await doc.useServiceAccountAuth(creds);
             await doc.getInfo();
@@ -37,15 +37,29 @@ passport.use(
             r._rawData[0].trim()
           );
 
+          const info = [...(await doc.sheetsByIndex[0].getRows())].map((r) =>
+            r._rawData[1].trim()
+          );
+
+          console.log(info);
           if (emails.indexOf(email) === -1) {
             return done("This email is not associated to a build participant");
+          }
+
+          else
+          {
+            var n = emails.indexOf(email);
+            console.log(n, info[n]);
+            var track = JSON.parse(info[n]);
+            console.log(track, typeof(track)); 
+            
           }
 
           const user_ = await client.user.create({
             data: { email, password: await bcrypt.hash(password, 14) },
           });
 
-          // Add donr badge
+          // Add donor badge
           await client.badge.create({
             data: {
               User: { connect: { id: user_.id } },
