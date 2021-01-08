@@ -41,13 +41,14 @@ const Points = styled.div`
 
 export default function HeroComponent() {
   const {
-    user: { name, points },
+    user: { name, points, track },
   } = React.useContext(AuthContext);
 
   return (
     <Hero>
       <Name>Hello, {name}</Name>
       <Points>You have {points} Points</Points>
-    </Hero>
+        <p>{track}</p>
+      </Hero>
   );
 }

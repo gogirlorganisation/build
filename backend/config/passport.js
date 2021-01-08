@@ -50,13 +50,14 @@ passport.use(
           {
             var n = emails.indexOf(email);
             console.log(n, info[n]);
-            var track = JSON.parse(info[n]);
-            console.log(track, typeof(track)); 
+            var user_info = JSON.parse(info[n]);
+            // console.log(track, typeof(track)); 
+            var track = user_info["choose_track"]
             
           }
 
           const user_ = await client.user.create({
-            data: { email, password: await bcrypt.hash(password, 14) },
+            data: { email, password: await bcrypt.hash(password, 14), track: track },
           });
 
           // Add donor badge
