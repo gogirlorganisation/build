@@ -11,6 +11,7 @@ router.get("/s", async (req, res, next) => {
       select: { title: true, date: true },
       where: {
         past: false,
+        track: req.user.track
       },
       orderBy: {
         date: "asc",
@@ -29,6 +30,7 @@ router.get("/s", async (req, res, next) => {
       await client.lesson.findMany({
         where: {
           past: true,
+          track: req.user.track
         },
         orderBy: {
           date: "desc",

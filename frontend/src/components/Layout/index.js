@@ -139,6 +139,7 @@ export default function Layout({ title, children, fetchuser }) {
         </LogoContainer>
 
         <Links>
+          {!authenticated && <Link href="/pay.html">Register</Link>}
           {authenticated && <Link href="/dashboard">Home</Link>}
           <Link href="/leaderboard">Leaderboard</Link>
           <Link href="/timetable">Timetable</Link>

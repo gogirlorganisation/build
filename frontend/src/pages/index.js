@@ -5,6 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
 import withAuth from "../lib/with-auth.js";
+import {Helmet} from "react-helmet";
 
 const Container = styled.div`
   min-height: 80vh;
@@ -99,9 +100,15 @@ function Home() {
 
   return (
     <>
+
       <Layout title="Login">
+
         <Container>
+
           <Box>
+          {/* <Helmet> */}
+    <form><script async="true" src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_GMInNyEcPgvmlo"> </script> </form>
+    {/* </Helmet> */}
             <Heading>Login</Heading>
             <Input
               type="email"
